@@ -1,0 +1,23 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Update Product
+
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+  <h1 style="padding-left: 120px; color: #40128B; font-size: 40px;">Редактировать товар</h1>
+  <div>
+    <form method="POST" enctype="multipart/form-data"  style="padding-left: 120px; padding-bottom: 50px; padding-top: 50px;">
+      {% csrf_token %}
+
+      {{ form.as_p }}
+
+      <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit" type="submit">Сохранить</button>
+    </form>
+  </div>
+
+  <div>
+        <a style="padding-left: 120px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:product_details' pk=object.pk %}">Назад</a>
+  </div>
+{% endblock %}

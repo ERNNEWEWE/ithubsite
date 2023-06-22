@@ -1,0 +1,24 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Профиль
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+  <h1 style=   "color: #40128B; text-align: center; font-size: 40px;">Мой профиль</h1>
+  {% if user.is_authenticated %}
+    <h2 style="color: white; padding-left: 120px; font-size: 40px;" >Данные:</h2>
+
+      <p style="padding-left: 125px; color: white; text-shadow: 2px 2px 2px black;">Логин: {{ user.username }}</p>
+      <p style="padding-left: 125px; color: white; text-shadow: 2px 2px 2px black;">Имя: {{ user.profile.last_name }}</p>
+      <p style="padding-left: 125px; color: white; text-shadow: 2px 2px 2px black;">Фамилия: {{ user.profile.first_name }}</p>
+      <p style="padding-left: 125px; color: white; text-shadow: 2px 2px 2px black;">E-mail: {{ user.profile.email }}</p>
+
+  {% else %}
+    <h2>Нет доступа!</h2>
+  {% endif %}
+
+  <div class="logout"><a style="padding-left: 120px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:profile-update' pk=user.profile.pk %}">Редактировать профиль</a></div>
+  <div class="logout"><a style="padding-left: 120px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:logout'%}">Выйти из профиля</a></div>
+
+{% endblock %}

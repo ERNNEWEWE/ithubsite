@@ -1,0 +1,45 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Корзина
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+    <h1 style="text-align: center; color: #40128B; font-size: 40px;">Корзина</h1>
+    {% if cart_items %}
+
+        <table style="text-align: center;color: #40128B; font-size: 20px; margin: 0 auto">
+            <tr>
+                <th >Товар</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th></th>
+            </tr>
+            {% for item in cart_items %}
+                <tr>
+                    <td style="padding-right: 40px">{{ item.product.name }}</td>
+                    <td  style="padding-right: 40px">{{ item.product.price }}</td>
+                    <td style="padding-right: 40px">{{ item.quantity }}</td>
+                    <td>
+                        <form action="{% url 'shopapp:remove_from_cart' item.pk %}" method="post">
+                            {% csrf_token %}
+                            <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit" type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3"><strong>Всего к оплате:</strong></td>
+                <td>{{ total }}руб.</td>
+                <td></td>
+            </tr>
+        </table>
+        <form style="text-align: center; padding-bottom: 50px;" action="{% url 'shopapp:create_order'%}" method="post">
+            {% csrf_token %}
+            <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit">Оформить заказ</button>
+        </form>
+    </div>
+    {% else %}
+        <h3 style="text-align: center;color: #40128B; font-size: 20px;">В вашей стране оплата запрещена </h3>
+    {% endif %}
+{% endblock %}

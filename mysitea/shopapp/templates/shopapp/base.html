@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'shopapp/css/style.css' %}">
+    <link rel="stylesheet" href="../../static/shopapp/css/index.css">
+    <title>{% block title %}
+      Base title
+    {% endblock %}</title>
+</head>
+<header style="background-color: #C4B0FF;">
+    {% block header %}
+    <div style="background-color: #FFE79B;"class="header">
+        <div class="logotype">Одежда-рул</div>
+        <div class="nav">
+            <a class="home" href="{% url 'shopapp:index'%}">Главная</a>
+            <a class="catalog" href="{% url 'shopapp:products-list'%}">Каталог </a>
+            <a class="contacts" href="#cont">Контакты</a>
+            {% if user.is_authenticated %}
+                <a class="profile" href="{% url 'shopapp:about-me'%}">Профиль</a>
+            {% else %}
+                <a class="profile" href="{% url 'shopapp:register'%}">Зарегистрироваться</a>
+                <a class="profile" href="{% url 'shopapp:login'%}">Войти в профиль</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <a class="cart" href="{% url 'shopapp:view_cart'%}">Корзина</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endblock %}
+</header>
+<body style="background-color: #F8E8EE;">
+
+{% block body %}
+  Base body
+{% endblock %}
+
+{% block footer %}
+  <div style="background-color: #F8E8EE;" id="cont" class="contacts_footer">
+    <h1>Контакты:</h1>
+    <p>Email: odegda@gmail.com</p>
+    <p>Телефон: 8-221-155-62-91</p>
+    <p>Адресс: г.неизвестно ул.пусто 1</p>
+  </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Product {{ product.pk }}
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+    <h1 style="color: #40128B; text-align: center;"><strong>{{ product.name }}</strong></h1>
+    <div style="color: #40128B; text-align: center;">
+        <div>
+            {% if product.preview %}
+                <img style="width: 400px; height: 250px" src="{{ product.preview.url }}" alt="{{ product.preview.name }}">
+            {% endif %}
+        </div>
+        <div style="text-shadow: 1px 1px 2px black;">
+            Описание:
+            <en>{{ product.description }}</en>
+        </div>
+        <div style="text-shadow: 1px 1px 2px black;">
+            Цена:
+            <en>{{ product.price }} руб.</en>
+        </div>
+
+    </div>
+
+    <div>
+        <a style="padding-left: 150px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:add_to_cart' product.pk %}">Добавить в корзину</a>
+        <br>
+    </div>
+    {% if perms.shopapp.change_product %}
+        <div>
+            <a style="padding-left: 150px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:product_update' pk=product.pk %}">Редактировать</a>
+            <br>
+        </div>
+    {% endif %}
+
+    {% if perms.shopapp.delete_product %}
+        <div>
+            <a style="padding-left: 150px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:product_delete' pk=product.pk %}">Удалить</a>
+            <br>
+        </div>
+    {% endif %}
+
+
+    <div>
+        <a style="padding-left: 150px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:products-list' %}">Назад </a>
+    </div>
+
+{% endblock %}

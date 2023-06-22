@@ -1,0 +1,56 @@
+body{
+    background-color: #FFBDF7;
+}
+.contacts_footer{
+    padding-left: 50px;
+    padding-top: 1px;
+    font-size: 20px;
+    color: #40128B;
+    background-color: rgb(0, 128, 0);
+    height: 250px;
+}
+
+header .header{
+    background-color: #FFE79B;
+    padding: 50px;
+}
+.logotype{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    font-size: 50px;
+    color: #40128B;
+}
+
+.nav{
+    display: flex;
+    justify-content: right;
+    font-size: 24px;
+    gap: 25px;
+    padding-right: 50px;
+}
+
+.home{
+    text-decoration: none;
+    color: #40128B;
+}
+
+.catalog{
+    text-decoration: none;
+    color: #40128B;
+}
+
+.cart{
+    text-decoration: none;
+    color: #40128B;
+}
+
+.profile{
+    text-decoration: none;
+    color: #40128B;
+}
+
+.contacts{
+    text-decoration: none;
+    color: #40128B;
+}

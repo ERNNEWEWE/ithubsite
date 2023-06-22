@@ -1,0 +1,61 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+    Одежда
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+    <div style="text-align: right; padding-right: 120px; padding-top: 20px;">
+        <form action="{% url 'shopapp:search' %}" method="GET">
+            <input type="search" type="text" name="q" placeholder="Поиск">
+            <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit" type="submit">Поиск</button>
+        </form>
+    </div>
+
+
+
+
+    <h1 style="text-align: center; color: #40128B; font-size: 40px;">Каталог </h1>
+     {% if products %}
+<div style="display: flex" class="div">
+    <button style="margin-right: 20px;padding: 20px; border-radius: 20px; border: none; cursor: pointer; "><a style="text-decoration: none" href="{% url 'shopapp:product-sorth' %}">По убыванию</a> </button>
+    <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; "><a style="text-decoration: none" href="{% url 'shopapp:product-sortl' %}">По возрастанию</a> </button>
+        <form action="{% url 'shopapp:search' %}" method="GET">
+                <select type="search" type="text" name="q">
+                <option>Крос</option>
+                    <option>Футбол</option>
+                </select>
+            <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit" type="submit">Поиск</button>
+        </form>
+
+</div>
+
+        <section class="section__main">
+    <div class="container">
+        {% for product in products %}
+<div class="card">
+  <div class="card-body">
+    <h5 style="margin: 0px" class="card-title"><a style="text-decoration: none; color: white;" href="{% url 'shopapp:product_details' pk=product.pk %}">{{ product.name }}</a></h5>
+     <p style="color: #40128B;text-shadow: 1px 1px 2px black;">Описание: {{ product.description }}</p>
+    {% if product.preview %}
+                        <img style="width: 400px; height: 350px;" src="{{ product.preview.url }}" alt="{{ product.preview.name }}">
+                    {% endif %}
+ <p style="text-shadow: 1px 1px 2px white;">Цена: {{ product.price }} руб.</p>
+                <p style="text-shadow: 1px 1px 2px white;">Просмотры: {{ product.views_count }} раз(-a)</p>
+
+  </div>
+
+</div>
+
+{% endfor %}
+        </div>
+
+
+    {% endif %}
+    {% if perms.shopapp.add_product %}
+
+        <div>
+            <a style="padding-left: 120px; text-decoration: underline; color: #40128B; font-size: 20px;" href="{% url 'shopapp:product-create'%}">Добавить товар</a>
+        </div>
+    {% endif %}
+{% endblock %}

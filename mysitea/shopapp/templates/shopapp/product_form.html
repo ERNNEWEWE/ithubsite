@@ -1,0 +1,20 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Добавить товар
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+  <h1>Добавляем одежды</h1>
+  <div style="margin: 0 auto">
+    <form  method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit" type="submit">Добавить</button>
+    </form>
+  </div>
+  <div>
+    <a style="text-decoration: underline; color: #40128B;" href="{% url 'shopapp:products-list' %}"
+    >Назад </a>
+  </div>
+{% endblock %}

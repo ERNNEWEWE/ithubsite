@@ -1,0 +1,31 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Product {{ product.pk }}
+{% endblock %}
+<link rel="stylesheet" href="../../static/shopapp/css/index.css">
+{% block body %}
+  <div>
+    <h1 style="color: #40128B; text-align: center;"><strong>Удаление товара {{ product.name }}</strong></h1>
+    <div style="color: #40128B; text-align: center;">
+        <div>
+            {% if product.preview %}
+                <img style="width: 400px; height: 250px" src="{{ product.preview.url }}" alt="{{ product.preview.name }}">
+            {% endif %}
+        </div>
+        <h1 style="color: #40128B; text-align: center; text-shadow: 1px 1px 2px black;"><strong>{{ product.name }}</strong></h1>
+        <div style="text-shadow: 1px 1px 2px black;">
+            Описание:
+            <en>{{ product.description }}</en>
+        </div>
+    </div>
+    <form method="post" style="padding-left: 120px; padding-bottom: 50px; padding-top: 50px;">
+      {% csrf_token %}
+      <button style="padding: 20px; border-radius: 20px; border: none; cursor: pointer; " type="submit" style="background-color: white; color: black;" type="submit">Удалить товар</button>
+    </form>
+  </div>
+  <div>
+    <a style="text-decoration: underline;padding-left: 120px; color: #40128B;" href="{% url 'shopapp:products-list' %}"
+    >Назад</a>
+  </div>
+{% endblock %}

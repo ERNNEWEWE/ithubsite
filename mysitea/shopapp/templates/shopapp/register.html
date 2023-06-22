@@ -1,0 +1,14 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block body %}
+  <h1 style="padding-left: 120px; color: #40128B; font-size: 40px;">Регистрация</h1>
+  <form method="POST" style="padding-left: 120px; padding-bottom: 50px; padding-top: 50px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Зарегистрироваться">
+  </form>
+{% endblock %}
